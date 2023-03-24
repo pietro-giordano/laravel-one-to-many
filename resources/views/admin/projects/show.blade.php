@@ -10,7 +10,7 @@
                   
                   <h6>Slug: {{ $project->slug }}</h6>
 
-                  <h4>Categoria: {{ $project->type ? $project->type->name : 'nessuna categoria' }}</h4>
+                  <h4>Categoria: {{ $project->type ? $project->type->name : 'nessuna tipologia' }}</h4>
 
                   <p>{{ $project->description }}</p>
 

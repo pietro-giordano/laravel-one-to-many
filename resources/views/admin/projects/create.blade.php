@@ -34,6 +34,16 @@
                               <label for="title" class="form-label">Titolo *</label>
                               <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Inserisci il titolo del progetto..." required maxlength="128">
                         </div>
+
+                        <div class="mb-3">
+                              <label for="type_id" class="form-label">Tipologia</label>
+                              <select class="form-select" name="type_id" id="type_id">
+                                    <option value="">Nessuna tipologia</option>
+                                    @foreach ($types as $type)
+                                          <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @endforeach
+                              </select>
+                        </div>
                         
                         <div class="mb-3">
                               <label for="description" class="form-label">Descrizione *</label>
