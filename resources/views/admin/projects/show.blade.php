@@ -8,7 +8,9 @@
 
                   <h1>{{ $project->title }}</h1>
                   
-                  <h5>Slug: {{ $project->slug }}</h5>
+                  <h6>Slug: {{ $project->slug }}</h6>
+
+                  <h4>Categoria: {{ $project->type ? $project->type->name : 'nessuna categoria' }}</h4>
 
                   <p>{{ $project->description }}</p>
 
