@@ -10,7 +10,15 @@
                   
                   <h6>Slug: {{ $project->slug }}</h6>
 
-                  <h4>Categoria: {{ $project->type ? $project->type->name : 'nessuna tipologia' }}</h4>
+                  <h4>Tipologia: 
+                        @if ($project->type)
+                              <a href="{{ route('admin.types.show', $project->type->id) }}">
+                                    {{ $project->type->name }}
+                              </a>
+                        @else
+                              Nessuna tipologia
+                        @endif
+                  </h4>
 
                   <p>{{ $project->description }}</p>
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 // Models
 use App\Models\Project;
-
+use App\Models\Type;
 // Helpers
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -28,6 +28,7 @@ class ProjectSeeder extends Seeder
                         'title' => $title,
                         'slug' => Str::slug($title),
                         'description' => $faker->paragraph(),
+                        'type_id' => Type::inRandomOrder()->first()->id
                   ]);
             }
       }

@@ -20,7 +20,16 @@
                         <div class="card-body">
                               <h5 class="card-title">{{ $project->id }} {{ $project->title }}</h5>
                               <h6 class="card-subtitle mb-2 text-muted">{{ $project->slug }}</h6>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <h4 class="card-text">
+                                    @if ($project->type)
+                                          <a href="{{ route('admin.types.show', $project->type->id) }}">
+                                                {{ $project->type->name }}
+                                          </a>
+                                    @else
+                                          Nessuna tipologia
+                                    @endif      
+                              </h4>
+                              <p class="card-text">{{ $project->description }}</p>
 
                               @if ($project->image)
                                     <div>
