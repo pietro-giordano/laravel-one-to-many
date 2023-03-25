@@ -7,6 +7,9 @@ use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Controllers\Controller;
 
+// Helpers
+use Illuminate\Support\Str;
+
 class TypeController extends Controller
 {
     /**
@@ -27,7 +30,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -38,7 +41,12 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+
+        $newType = Type::create($data);
+
+        return redirect()->route('admin.types.show', $newType)->with('success', 'Tipologia aggiunta con successo');
     }
 
     /**
@@ -60,7 +68,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -72,7 +80,11 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+
+        $type->update($data);
+        return redirect()->route('admin.types.show', $type->id)->with('success', 'Tipologia aggiornata con successo');
     }
 
     /**
@@ -83,6 +95,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('success', 'Tipologia eliminata con successo');
     }
 }
